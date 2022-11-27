@@ -1,11 +1,10 @@
 package com.visionaryCrofting.demo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
-public class stock {
+@Entity
+public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -19,12 +18,14 @@ public class stock {
     private String email;
     @Column(name = "password")
     private String password;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Product> product;
 
 
-    public stock() {
+    public Stock() {
     }
 
-    public stock(int id, String nom, String adresse, String tel, String email, String password) {
+    public Stock(int id, String nom, String adresse, String tel, String email, String password) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
@@ -33,7 +34,7 @@ public class stock {
         this.password = password;
     }
 
-    public stock(String nom, String adresse, String tel, String email, String password) {
+    public Stock(String nom, String adresse, String tel, String email, String password) {
         this.nom = nom;
         this.adresse = adresse;
         this.tel = tel;
