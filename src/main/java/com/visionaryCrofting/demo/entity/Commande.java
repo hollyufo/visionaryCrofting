@@ -2,12 +2,14 @@ package com.visionaryCrofting.demo.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 
 @Entity
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "commande_id")
     private Long id;
     @Column(nullable = false,unique = true)
     private String ref;
@@ -16,9 +18,9 @@ public class Commande {
     private Double prixTotal;
     @ManyToOne
     @JoinColumn(name = "client_id")
-
     private Client client;
-
+   @OneToMany(cascade = CascadeType.ALL)
+    private List<CommandeItem> commandeItems;
     public Commande(){}
     public Commande(String ref, LocalDate date, Double prixTotal, Client client) {
         this.ref = ref;
