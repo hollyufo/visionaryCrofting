@@ -1,11 +1,10 @@
 package com.visionaryCrofting.demo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+@Entity
 public class fournisseur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

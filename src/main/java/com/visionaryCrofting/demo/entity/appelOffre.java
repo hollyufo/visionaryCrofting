@@ -15,25 +15,25 @@ public class appelOffre {
     private String refProduit;
     @Column(name = "status")
     private boolean status;
-    @Column(name = "quantité")
-    private int quantité;
+    @Column(name = "quantity")
+    private int quantity;
 
     public appelOffre() {
     }
 
-    public appelOffre(int id, String ref, String refProduit, boolean status, int quantité) {
+    public appelOffre(int id, String ref, String refProduit, boolean status, int quantity) {
         this.id = id;
         this.ref = ref;
         this.refProduit = refProduit;
         this.status = status;
-        this.quantité = quantité;
+        this.quantity = quantity;
     }
 
-    public appelOffre(String ref, String refProduit, boolean status, int quantité) {
+    public appelOffre(String ref, String refProduit, boolean status, int quantity) {
         this.ref = ref;
         this.refProduit = refProduit;
         this.status = status;
-        this.quantité = quantité;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -61,11 +61,11 @@ public class appelOffre {
     }
 
     public int getQuantité() {
-        return quantité;
+        return quantity;
     }
 
     public void setQuantité(int quantité) {
-        this.quantité = quantité;
+        this.quantity = quantity;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class appelOffre {
                 "id=" + id +
                 ", ref='" + ref + '\'' +
                 ", status=" + status +
-                ", quantité=" + quantité +
+                ", quantité=" + quantity +
                 '}';
     }
 }
