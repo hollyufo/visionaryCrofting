@@ -3,10 +3,12 @@ package com.visionaryCrofting.demo.entity;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Product {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+   @Column(name = "product_id")
+    private Long id;
    @Column(name = "ref")
     private String ref;
    @Column(name = "nom")
@@ -23,15 +25,6 @@ public class Product {
     @JoinColumn(name = "stock_id")
     private Stock stock;
 
-    public Product(int id, String ref, String nom, String category, String descreption, int quantity) {
-        this.id = id;
-        this.ref = ref;
-        this.nom = nom;
-        this.category = category;
-        this.descreption = descreption;
-        this.quantity = quantity;
-    }
-
     public Product() {
     }
 
@@ -43,13 +36,10 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getRef() {
         return ref;
@@ -89,6 +79,22 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public List<CommandeItem> getCommandeItems() {
+        return commandeItems;
+    }
+
+    public void setCommandeItems(List<CommandeItem> commandeItems) {
+        this.commandeItems = commandeItems;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 
     @Override

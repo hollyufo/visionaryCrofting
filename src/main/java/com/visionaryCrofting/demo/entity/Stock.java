@@ -7,7 +7,7 @@ import java.util.List;
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     @Column(name = "nom")
     private String nom;
     @Column(name = "adresse")
@@ -25,7 +25,7 @@ public class Stock {
     public Stock() {
     }
 
-    public Stock(int id, String nom, String adresse, String tel, String email, String password) {
+    public Stock(Long id, String nom, String adresse, String tel, String email, String password) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
@@ -42,12 +42,8 @@ public class Stock {
         this.password = password;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNom() {
