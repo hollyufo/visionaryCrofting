@@ -1,14 +1,12 @@
 package com.visionaryCrofting.demo.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-public class appelOffre {
+@Entity
+public class AppelOffre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     @Column(name = "ref")
     private String ref;
     @Column(name = "refProduit")
@@ -18,10 +16,10 @@ public class appelOffre {
     @Column(name = "quantity")
     private int quantity;
 
-    public appelOffre() {
+    public AppelOffre() {
     }
 
-    public appelOffre(int id, String ref, String refProduit, boolean status, int quantity) {
+    public AppelOffre(Long id, String ref, String refProduit, boolean status, int quantity) {
         this.id = id;
         this.ref = ref;
         this.refProduit = refProduit;
@@ -29,19 +27,15 @@ public class appelOffre {
         this.quantity = quantity;
     }
 
-    public appelOffre(String ref, String refProduit, boolean status, int quantity) {
+    public AppelOffre(String ref, String refProduit, boolean status, int quantity) {
         this.ref = ref;
         this.refProduit = refProduit;
         this.status = status;
         this.quantity = quantity;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getRef() {
