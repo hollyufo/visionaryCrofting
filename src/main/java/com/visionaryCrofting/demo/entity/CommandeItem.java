@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class CommandeItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     @Column(name = "ref")
     private String ref;
     @Column(name = "quantity")
@@ -23,7 +23,7 @@ public class CommandeItem {
     public CommandeItem() {
     }
 
-    public CommandeItem(int id, String ref, int quantity, double price) {
+    public CommandeItem(Long id, String ref, int quantity, double price) {
         this.id = id;
         this.ref = ref;
         this.quantity = quantity;
@@ -36,12 +36,8 @@ public class CommandeItem {
         this.price = price;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getRef() {
@@ -66,6 +62,22 @@ public class CommandeItem {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override

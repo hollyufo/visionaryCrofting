@@ -1,11 +1,9 @@
 package com.visionaryCrofting.demo.entity;
 
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import javax.persistence.*;
-import java.time.LocalDate;
+
 @Entity
-public class fournisseur {
+public class Fournisseur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -18,10 +16,10 @@ public class fournisseur {
     @Column(name = "password")
     private String  password;
 
-    public fournisseur() {
+    public Fournisseur() {
     }
 
-    public fournisseur(Long id, String name, String email, String tel, String password) {
+    public Fournisseur(Long id, String name, String email, String tel, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -29,7 +27,7 @@ public class fournisseur {
         this.password = password;
     }
 
-    public fournisseur(String name, String email, String tel, String password) {
+    public Fournisseur(String name, String email, String tel, String password) {
         this.name = name;
         this.email = email;
         this.tel = tel;
