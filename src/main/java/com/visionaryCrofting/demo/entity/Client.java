@@ -22,7 +22,7 @@ public class Client {
     )
     private String password;
     private String tel;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
     List<Commande> commandes;
 
     public Client() {

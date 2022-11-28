@@ -1,5 +1,5 @@
 package com.visionaryCrofting.demo.entity;
 
-public enum status {
+public enum Status {
     open,validate,close
 }
