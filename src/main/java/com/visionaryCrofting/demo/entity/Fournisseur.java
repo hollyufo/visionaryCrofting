@@ -3,13 +3,16 @@ package com.visionaryCrofting.demo.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Fournisseur",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email")
+})
 public class Fournisseur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "email")
+    @Column(name = "email",nullable = false,unique = true)
     private String email;
     @Column(name = "tel")
     private String tel;

@@ -3,9 +3,12 @@ package com.visionaryCrofting.demo.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
+
 
 @Entity
+@Table(name = "Commande",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "ref")
+})
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
