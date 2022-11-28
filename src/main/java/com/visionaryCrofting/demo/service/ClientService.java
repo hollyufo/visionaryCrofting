@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface ClientService {
     List<Client> getAllClients();
     Optional<Client> getOnById(Long id);
+    Optional<Client> addClient(Client client);
 }
