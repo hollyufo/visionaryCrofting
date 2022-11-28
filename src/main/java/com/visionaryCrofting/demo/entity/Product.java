@@ -4,12 +4,15 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "Product",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "ref")
+})
 public class Product {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "product_id")
     private Long id;
-   @Column(name = "ref")
+   @Column(name = "ref",nullable = false,unique = true)
     private String ref;
    @Column(name = "nom")
     private String nom;
@@ -19,8 +22,8 @@ public class Product {
     private String descreption;
    @Column(name = "quantity")
     private int quantity;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<CommandeItem> commandeItems;
+    @OneToOne(cascade = CascadeType.ALL)
+    private CommandeItem commandeItem;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stock_id")
     private Stock stock;
@@ -81,12 +84,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public List<CommandeItem> getCommandeItems() {
-        return commandeItems;
+    public CommandeItem getCommandeItem() {
+        return commandeItem;
     }
 
-    public void setCommandeItems(List<CommandeItem> commandeItems) {
-        this.commandeItems = commandeItems;
+    public void setCommandeItems(CommandeItem commandeItem) {
+        this.commandeItem = commandeItem;
     }
 
     public Stock getStock() {

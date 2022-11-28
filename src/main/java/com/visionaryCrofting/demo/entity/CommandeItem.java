@@ -3,11 +3,14 @@ package com.visionaryCrofting.demo.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "CommandeItem",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "ref")
+})
 public class CommandeItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "ref")
+    @Column(name = "ref" , nullable = false,unique = true)
     private String ref;
     @Column(name = "quantity")
     private int quantity;
@@ -16,7 +19,7 @@ public class CommandeItem {
     @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "commande_id")
     private Commande commande;
-    @ManyToOne(cascade =CascadeType.ALL)
+    @OneToOne(cascade =CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
 
