@@ -1,7 +1,7 @@
 package com.visionaryCrofting.demo.entity;
 
 import javax.persistence.*;
-
+//salim
 @Entity
 public class AppelOffre {
     @Id
