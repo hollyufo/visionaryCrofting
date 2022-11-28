@@ -1,25 +1,40 @@
 package com.visionaryCrofting.demo.ressources;
 
 
-import com.visionaryCrofting.demo.entity.CommandeItem;
+import com.visionaryCrofting.demo.entity.Commande;
 import com.visionaryCrofting.demo.service.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/Command")
 public class CommandContrroler {
+
     public final CommandService commandService;
     @Autowired
     public CommandContrroler(CommandService commandService) {
         this.commandService = commandService;
     }
     @GetMapping("/all")
-    public List<CommandeItem> getAllCommandeItem(){
-        return commandService.getAllCommandeItem();
+    public List<Commande> getAllCommande(){
+        return commandService.getAllCommande();
+    }
+    @GetMapping("/id/{id}")
+    public Commande getCommandeById(@PathVariable("id") Long id){
+        return commandService.getCommandeById(id);
+    }
+    @GetMapping("/ref/{ref}")
+    public Commande getCommandeByRef(@PathVariable("ref") String ref){
+        return commandService.getCommandeByRef(ref);
+    }
+    @PostMapping("/add")
+    public Commande addCommande(@RequestBody Commande commande){
+        return commandService.addCommande(commande);
+    }
+    @DeleteMapping("/id/{id}")
+    public String deleteCommande(@PathVariable("id") Long id){
+        return commandService.deleteCommande(id);
     }
 }
