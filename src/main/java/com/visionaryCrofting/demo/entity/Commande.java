@@ -19,10 +19,13 @@ public class Commande {
     @Column(nullable = false)
     private LocalDate date;
     private Double prixTotal;
+
+    @Column(nullable = false)
+    private status status;
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-   @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<CommandeItem> commandeItems;
     public Commande(){}
     public Commande(String ref, LocalDate date, Double prixTotal, Client client) {
