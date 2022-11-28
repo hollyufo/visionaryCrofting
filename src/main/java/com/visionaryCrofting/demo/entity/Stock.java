@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "Stock",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email")
+})
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,7 +17,7 @@ public class Stock {
     private String adresse;
     @Column(name = "tel")
     private String tel;
-    @Column(name = "email")
+    @Column(name = "email",nullable = false,unique = true)
     private String email;
     @Column(name = "password")
     private String password;

@@ -3,11 +3,14 @@ package com.visionaryCrofting.demo.entity;
 import javax.persistence.*;
 //salim
 @Entity
+@Table(name = "AppelOffre",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "ref")
+})
 public class AppelOffre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "ref")
+    @Column(name = "ref" , nullable = false,unique = true)
     private String ref;
     @Column(name = "refProduit")
     private String refProduit;
