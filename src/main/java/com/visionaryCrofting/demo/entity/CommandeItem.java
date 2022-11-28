@@ -19,7 +19,7 @@ public class CommandeItem {
     @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "commande_id")
     private Commande commande;
-    @OneToOne(cascade =CascadeType.ALL)
+    @OneToOne(mappedBy ="commandeItem" ,cascade =CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
 
