@@ -70,4 +70,14 @@ public class Client {
     public void setCommandes(List<Commande> commandes) {
         this.commandes = commandes;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", tel='" + tel + '\'' +
+                '}';
+    }
 }
