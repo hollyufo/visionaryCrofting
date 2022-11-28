@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ClientServiceImp implements ClientService {
@@ -15,5 +16,10 @@ public class ClientServiceImp implements ClientService {
     @Override
     public List<Client> getAllClients() {
         return clientRepository.findAll();
+    }
+
+    @Override
+    public Optional<Client> getOnById(Long id) {
+        return clientRepository.findById(id);
     }
 }
