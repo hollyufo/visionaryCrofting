@@ -1,7 +1,7 @@
 package com.visionaryCrofting.demo.entity;
 
 import javax.persistence.*;
-//salim
+
 @Entity
 @Table(name = "AppelOffre",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
@@ -14,15 +14,15 @@ public class AppelOffre {
     private String ref;
     @Column(name = "refProduit")
     private String refProduit;
-    @Column(name = "status")
-    private boolean status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @Column(name = "quantity")
     private int quantity;
 
     public AppelOffre() {
     }
 
-    public AppelOffre(Long id, String ref, String refProduit, boolean status, int quantity) {
+    public AppelOffre(Long id, String ref, String refProduit, Status status, int quantity) {
         this.id = id;
         this.ref = ref;
         this.refProduit = refProduit;
@@ -30,7 +30,7 @@ public class AppelOffre {
         this.quantity = quantity;
     }
 
-    public AppelOffre(String ref, String refProduit, boolean status, int quantity) {
+    public AppelOffre(String ref, String refProduit, Status status, int quantity) {
         this.ref = ref;
         this.refProduit = refProduit;
         this.status = status;
@@ -49,11 +49,11 @@ public class AppelOffre {
         this.ref = ref;
     }
 
-    public boolean isStatus() {
+    public Status isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
