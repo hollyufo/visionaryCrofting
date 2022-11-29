@@ -2,6 +2,7 @@ package com.visionaryCrofting.demo.ressources;
 
 import com.visionaryCrofting.demo.entity.AppelOffre;
 import com.visionaryCrofting.demo.entity.Status;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,8 +13,8 @@ class AppelOffreRestTest {
 @Autowired AppelOffreRest aoRest;
 @Test
     void save() throws Exception {
-    AppelOffre ao = new AppelOffre("ref1", "ref1", Status.close, 13);
+    AppelOffre ao = new AppelOffre(12L,"ref1", "ref1", Status.close, 13);
     AppelOffre result = aoRest.save(ao);
-    assertThat(result).isNotNull();
+    Assertions.assertSame(ao,result);
     }
 }

@@ -1,7 +1,10 @@
 package com.visionaryCrofting.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Fournisseur",uniqueConstraints = {
@@ -10,6 +13,7 @@ import java.io.Serializable;
 public class Fournisseur implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "fournisseur_id")
     private Long id;
     @Column(name = "name")
     private String name;
@@ -19,6 +23,13 @@ public class Fournisseur implements Serializable {
     private String tel;
     @Column(name = "password")
     private String  password;
+
+
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "fournisseur")
+    @JsonBackReference
+    List<AppelOffre> appelOffre;
+
 
     public Fournisseur() {
     }
@@ -78,6 +89,13 @@ public class Fournisseur implements Serializable {
         this.password = password;
     }
 
+    public List<AppelOffre> getAppelOffre() {
+        return appelOffre;
+    }
+
+    public void setAppelOffre(List<AppelOffre> appelOffre) {
+        this.appelOffre = appelOffre;
+    }
     @Override
     public String toString() {
         return "fournisseur{" +

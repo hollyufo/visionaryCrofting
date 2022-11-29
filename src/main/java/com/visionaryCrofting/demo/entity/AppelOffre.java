@@ -1,5 +1,7 @@
 package com.visionaryCrofting.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -31,6 +33,22 @@ public class AppelOffre implements Serializable {
     @Column(name = "quantity")
     private int quantity;
 
+
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stock_id")
+    @JsonManagedReference
+    private Stock stock;
+
+
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fournisseur_id")
+    @JsonManagedReference
+    private Fournisseur fournisseur;
+
     public AppelOffre() {
     }
 
@@ -56,7 +74,13 @@ public class AppelOffre implements Serializable {
     public String getRef() {
         return ref;
     }
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
 
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
+    }
     public void setRef(String ref) {
         this.ref = ref;
     }
@@ -68,7 +92,12 @@ public class AppelOffre implements Serializable {
     public void setStatus(Status status) {
         this.status = status;
     }
-
+    public Stock getStock() {
+        return stock;
+    }
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
     public int getQuantity() {
         return quantity;
     }
