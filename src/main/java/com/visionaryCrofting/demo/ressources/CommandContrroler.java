@@ -2,7 +2,7 @@ package com.visionaryCrofting.demo.ressources;
 
 
 import com.visionaryCrofting.demo.entity.Commande;
-import com.visionaryCrofting.demo.service.CommandService;
+import com.visionaryCrofting.demo.service.implementation.CommandServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/Command")
 public class CommandContrroler {
 
-    public final CommandService commandService;
+    public final CommandServiceImp commandService;
     @Autowired
-    public CommandContrroler(CommandService commandService) {
+    public CommandContrroler(CommandServiceImp commandService) {
         this.commandService = commandService;
     }
     @GetMapping("/all")
