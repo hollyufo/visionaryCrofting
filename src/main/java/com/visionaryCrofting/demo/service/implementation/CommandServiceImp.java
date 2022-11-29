@@ -28,10 +28,13 @@ public class CommandServiceImp implements CommandService{
     }
     // add commande
     public Commande addCommande(Commande commande){
-        // chcking if commande is empty
-        if(commande.getRef() == null){
-            return null;
-        }else {
+        // checkin if commande exist
+        if (commandeRepository.findByRef(commande.getRef()) != null){
+            throw new IllegalStateException("Commande existe déja");
+            // checking if command values are empty
+        }else if (commande.getRef() == null || commande.getRef().isEmpty() || commande.getRef().isBlank()){
+            throw new IllegalStateException("please fill all the inputs");
+        }else{
             return commandeRepository.save(commande);
         }
     }
