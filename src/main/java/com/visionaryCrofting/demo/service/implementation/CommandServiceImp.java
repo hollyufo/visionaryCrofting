@@ -9,11 +9,8 @@ import java.util.List;
 
 @Service
 public class CommandServiceImp implements CommandService{
-    public final CommandeRepository commandeRepository;
     @Autowired
-    public CommandServiceImp(CommandeRepository commandeRepository) {
-        this.commandeRepository = commandeRepository;
-    }
+    CommandeRepository commandeRepository;
     // get all commande
     public List<Commande> getAllCommande(){
         return commandeRepository.findAll();
@@ -28,10 +25,13 @@ public class CommandServiceImp implements CommandService{
     }
     // add commande
     public Commande addCommande(Commande commande){
-        // chcking if commande is empty
-        if(commande.getRef() == null){
-            return null;
-        }else {
+        // checkin if commande exist
+        if (commandeRepository.findByRef(commande.getRef()) != null){
+            throw new IllegalStateException("Commande existe déja");
+            // checking if command values are empty
+        }else if (commande.getRef() == null || commande.getRef().isEmpty() || commande.getRef().isBlank()){
+            throw new IllegalStateException("please fill all the inputs");
+        }else{
             return commandeRepository.save(commande);
         }
     }
