@@ -1,5 +1,6 @@
 package com.visionaryCrofting.demo.ressources;
 
+import com.visionaryCrofting.demo.entity.CommandeItem;
 import com.visionaryCrofting.demo.entity.Product;
 import com.visionaryCrofting.demo.service.InterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,39 +10,38 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("${api.endpoint}/product")
-public class ProductController {
+@RequestMapping("${api.endpoint}/commandItem")
+public class CommandItemController {
     @Autowired
-    private InterfaceService productService;
+    private InterfaceService interfaceService;
 
     @GetMapping("/id/{id}")
-    public Optional<Product> getByID(Long id) {
+    public Optional<CommandeItem> getByID(Long id) {
         if(id<=0){
             System.out.println("id doit etre superieur strictement de 0");
-        return null;
+            return null;
         }
         else
-        return productService.getById(id);
+            return interfaceService.getById(id);
     }
 
     @GetMapping("/")
-    public List<Product> getAll() {
-        return productService.getAll();
+    public List<CommandeItem> getAll() {
+        return interfaceService.getAll();
     }
 
     @GetMapping("/count")
     public int count() {
-        return productService.count();
+        return interfaceService.count();
     }
 
     @PostMapping("/")
-    public Product save(@RequestBody Product product) {
-        return (Product) productService.save(product);
+    public CommandeItem save(@RequestBody CommandeItem commandeItem) {
+        return (CommandeItem) interfaceService.save(commandeItem);
     }
 
     @DeleteMapping("/id/{aLong}")
     public void deleteById(@PathVariable Long id) {
-        productService.deleteById(id);
+        interfaceService.deleteById(id);
     }
-
 }

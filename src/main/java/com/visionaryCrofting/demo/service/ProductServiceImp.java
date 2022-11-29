@@ -4,13 +4,12 @@ import com.visionaryCrofting.demo.entity.Product;
 import com.visionaryCrofting.demo.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
-public class ProductServiceImp implements ProductService{
+public class ProductServiceImp implements InterfaceService<Product> {
 
     @Autowired
     ProductRepository productRepository;
@@ -32,8 +31,9 @@ public class ProductServiceImp implements ProductService{
 
     @Override
     public Product save(Product product) {
-        return productRepository.save(product);
+        return null;
     }
+
 
     @Override
     public void deleteById(Long id) {
