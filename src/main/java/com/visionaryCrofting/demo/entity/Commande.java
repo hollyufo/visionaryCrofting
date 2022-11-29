@@ -1,6 +1,10 @@
 package com.visionaryCrofting.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -9,7 +13,7 @@ import java.util.List;
 @Table(name = "Commande",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
 })
-public class Commande {
+public class Commande implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "commande_id")
@@ -25,7 +29,8 @@ public class Commande {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-   @OneToMany(mappedBy = "commande",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "commande",cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<CommandeItem> commandeItems;
     public Commande(){}
     public Commande(String ref, LocalDate date, Double prixTotal, Client client) {
