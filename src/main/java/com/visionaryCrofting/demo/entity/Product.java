@@ -1,5 +1,7 @@
 package com.visionaryCrofting.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -24,9 +26,11 @@ public class Product implements Serializable {
    @Column(name = "quantity")
     private int quantity;
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private CommandeItem commandeItem;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stock_id")
+    @JsonManagedReference
     private Stock stock;
 
     public Product() {
