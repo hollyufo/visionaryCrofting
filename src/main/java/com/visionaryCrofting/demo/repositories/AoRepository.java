@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AoRepository extends JpaRepository<AppelOffre,Long> {
+    int deleteByRef(String ref);
+    AppelOffre findByRef(String ref);
+
+
 }

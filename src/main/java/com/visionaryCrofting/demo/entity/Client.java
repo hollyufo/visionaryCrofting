@@ -22,7 +22,7 @@ public class Client {
     )
     private String password;
     private String tel;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
     List<Commande> commandes;
 
     public Client() {
@@ -69,5 +69,15 @@ public class Client {
 
     public void setCommandes(List<Commande> commandes) {
         this.commandes = commandes;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", tel='" + tel + '\'' +
+                '}';
     }
 }

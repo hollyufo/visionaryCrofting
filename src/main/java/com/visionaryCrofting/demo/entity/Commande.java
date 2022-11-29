@@ -22,7 +22,7 @@ public class Commande {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-   @OneToMany(cascade = CascadeType.ALL)
+   @OneToMany(mappedBy = "commande",cascade = CascadeType.ALL)
     private List<CommandeItem> commandeItems;
     public Commande(){}
     public Commande(String ref, LocalDate date, Double prixTotal, Client client) {
