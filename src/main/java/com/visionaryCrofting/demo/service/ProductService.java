@@ -16,5 +16,7 @@ public interface ProductService {
     Product update(Product t);
 
     public void deleteById(Long id);
+    Product findByRef(String ref);
+    int deleteByRef(String ref);
 
 }
