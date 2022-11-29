@@ -5,12 +5,12 @@ import com.visionaryCrofting.demo.repositories.AoRepository;
 import com.visionaryCrofting.demo.service.AppelOffreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class AppelOffreServiceImpl implements AppelOffreService {
-
+    @Transactional
 
     @Override
     public int deleteByRef(String ref) {
@@ -27,7 +27,6 @@ public class AppelOffreServiceImpl implements AppelOffreService {
         return aoRepository.findAll();
     }
 
-    @Deprecated
     @Override
     public AppelOffre getOne(Long aLong) {
         return aoRepository.getOne(aLong);
@@ -38,9 +37,10 @@ public class AppelOffreServiceImpl implements AppelOffreService {
         if (this.findByRef(appelOffre.getRef()) != null) return null;
         return aoRepository.save(appelOffre);
     }
+
     @Override
     public AppelOffre update(AppelOffre appelOffre) {
-        if (this.findByRef(appelOffre.getRef()) == null) return null;
+        if (this.findByRef(appelOffre.getRef()) != null) return null;
         return aoRepository.save(appelOffre);
     }
 

@@ -1,13 +1,17 @@
 package com.visionaryCrofting.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "client",uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
-public class Client {
+public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "client_id")
@@ -22,8 +26,10 @@ public class Client {
     )
     private String password;
     private String tel;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-    @Transient
+
+    @JsonBackReference
     List<Commande> commandes;
 
     public Client() {
