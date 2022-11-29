@@ -4,7 +4,6 @@ import com.visionaryCrofting.demo.entity.Product;
 import com.visionaryCrofting.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +14,9 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/id/{id}")
-    public Optional<Product> getByID(Long id) {return productService.getById(id);}
+    public Optional<Product> getByID(@PathVariable Long id) {
+        return productService.getById(id);
+    }
 
     @GetMapping("/")
     public List<Product> getAll() {
@@ -29,15 +30,26 @@ public class ProductController {
 
     @PostMapping("/")
     public Product save(@RequestBody Product product) {
-        return (Product) productService.save(product);
+        return productService.save(product);
     }
 
     @PutMapping("/")
-    public Product update(@RequestBody Product product) {return (Product) productService.update(product);}
+    public Product update(@RequestBody Product product) {
+        return productService.update(product);
+    }
 
     @DeleteMapping("/id/{aLong}")
     public void deleteById(@PathVariable Long id) {
         productService.deleteById(id);
     }
 
+    @GetMapping("/ref/{ref}")
+    public Product findByRef(@PathVariable("ref") String ref) {
+        return productService.findByRef(ref);
+    }
+
+    @DeleteMapping("/ref/{ref}")
+    public int deleteByRef(@PathVariable String ref) {
+        return productService.deleteByRef(ref);
+    }
 }
