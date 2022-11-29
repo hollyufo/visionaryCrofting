@@ -1,13 +1,14 @@
 package com.visionaryCrofting.demo.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "Product",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
 })
-public class Product{
+public class Product implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "product_id")
