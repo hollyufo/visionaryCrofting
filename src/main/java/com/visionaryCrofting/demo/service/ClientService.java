@@ -3,6 +3,7 @@ package com.visionaryCrofting.demo.service;
 import com.visionaryCrofting.demo.entity.Client;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,5 +11,6 @@ import java.util.Optional;
 public interface ClientService {
     List<Client> getAllClients();
     Optional<Client> getOnById(Long id);
-    Optional<Client> addClient(Client client);
+    Client addClient(Client client);
+    Client updateClient(Long id,Client client);
 }
