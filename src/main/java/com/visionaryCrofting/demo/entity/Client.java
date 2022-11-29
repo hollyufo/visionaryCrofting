@@ -23,6 +23,7 @@ public class Client {
     private String password;
     private String tel;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    @Transient
     List<Commande> commandes;
 
     public Client() {

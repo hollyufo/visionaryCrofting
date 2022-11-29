@@ -9,11 +9,8 @@ import java.util.List;
 
 @Service
 public class CommandServiceImp implements CommandService{
-    public final CommandeRepository commandeRepository;
     @Autowired
-    public CommandServiceImp(CommandeRepository commandeRepository) {
-        this.commandeRepository = commandeRepository;
-    }
+    CommandeRepository commandeRepository;
     // get all commande
     public List<Commande> getAllCommande(){
         return commandeRepository.findAll();
