@@ -1,7 +1,7 @@
 package com.visionaryCrofting.demo.ressources;
 
 import com.visionaryCrofting.demo.entity.Product;
-import com.visionaryCrofting.demo.service.InterfaceService;
+import com.visionaryCrofting.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,17 +12,10 @@ import java.util.Optional;
 @RequestMapping("${api.endpoint}/product")
 public class ProductController {
     @Autowired
-    private InterfaceService productService;
+    private ProductService productService;
 
     @GetMapping("/id/{id}")
-    public Optional<Product> getByID(Long id) {
-        if(id<=0){
-            System.out.println("id doit etre superieur strictement de 0");
-        return null;
-        }
-        else
-        return productService.getById(id);
-    }
+    public Optional<Product> getByID(Long id) {return productService.getById(id);}
 
     @GetMapping("/")
     public List<Product> getAll() {
@@ -38,6 +31,9 @@ public class ProductController {
     public Product save(@RequestBody Product product) {
         return (Product) productService.save(product);
     }
+
+    @PutMapping("/")
+    public Product update(@RequestBody Product product) {return (Product) productService.update(product);}
 
     @DeleteMapping("/id/{aLong}")
     public void deleteById(@PathVariable Long id) {

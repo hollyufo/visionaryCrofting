@@ -28,7 +28,7 @@ public class AppelOffreRest {
         return appelOffreService.getOne(aLong);
     }
 
-     @PostMapping("/")
+    @PostMapping("/")
     public AppelOffre save(@RequestBody AppelOffre appelOffre) {
         return appelOffreService.save(appelOffre);
     }
