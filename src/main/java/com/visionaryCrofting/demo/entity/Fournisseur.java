@@ -13,6 +13,7 @@ import java.util.List;
 public class Fournisseur implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "fournisseur_id")
     private Long id;
     @Column(name = "name")
     private String name;
@@ -25,8 +26,7 @@ public class Fournisseur implements Serializable {
 
 
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fournisseur_id")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "fournisseur")
     @JsonBackReference
     List<AppelOffre> appelOffre;
 
