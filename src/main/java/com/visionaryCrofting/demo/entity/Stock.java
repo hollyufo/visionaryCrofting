@@ -13,6 +13,7 @@ import java.util.List;
 public class Stock implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "stock_id")
     private Long id;
     @Column(name = "nom")
     private String nom;
@@ -24,10 +25,10 @@ public class Stock implements Serializable {
     private String email;
     @Column(name = "password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "stock")
     @JsonBackReference
     private List<Product> product;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "stock")
     @JsonBackReference
     private List<AppelOffre> appelOffres;
 

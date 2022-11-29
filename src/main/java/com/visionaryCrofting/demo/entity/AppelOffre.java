@@ -35,15 +35,17 @@ public class AppelOffre implements Serializable {
 
 
 
-    @Column(name = "stock")
+
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stock_id")
     @JsonManagedReference
     private Stock stock;
 
 
 
-    @Column(name = "fournisseur")
+
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fournisseur_id")
     @JsonManagedReference
     private Fournisseur fournisseur;
 
