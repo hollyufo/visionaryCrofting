@@ -26,6 +26,8 @@ public class AppelOffre implements Serializable {
     private String refProduit;
     @Enumerated(EnumType.STRING)
     private Status status;
+
+
     @Column(name = "quantity")
     private int quantity;
 
@@ -67,13 +69,14 @@ public class AppelOffre implements Serializable {
         this.status = status;
     }
 
-    public int getQuantité() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantité(int quantité) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 
     @Override
     public String toString() {
@@ -81,7 +84,7 @@ public class AppelOffre implements Serializable {
                 "id=" + id +
                 ", ref='" + ref + '\'' +
                 ", status=" + status +
-                ", quantité=" + quantity +
+                ", quantity=" + quantity +
                 '}';
     }
 }
