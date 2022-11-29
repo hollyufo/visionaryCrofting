@@ -23,7 +23,7 @@ public class ClientTest {
 
     @Test
     public void addClient(){
-        Client client = new Client("saida@gmail.com","Azerty@123","0677889900", List.of());
+        Client client = new Client("salim@gmail.com","Azerty@123","0677889900", List.of());
         Client result=null;
         Pattern patternEmail = Pattern.compile("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,})$");
         Pattern patternPassword = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");

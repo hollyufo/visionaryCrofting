@@ -19,10 +19,13 @@ public class Commande {
     @Column(nullable = false)
     private LocalDate date;
     private Double prixTotal;
+    // collum for the enum status
+    @Column(nullable = false)
+    private String status;
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-   @OneToMany(cascade = CascadeType.ALL)
+   @OneToMany(mappedBy = "commande",cascade = CascadeType.ALL)
     private List<CommandeItem> commandeItems;
     public Commande(){}
     public Commande(String ref, LocalDate date, Double prixTotal, Client client) {
@@ -31,7 +34,13 @@ public class Commande {
         this.prixTotal = prixTotal;
         this.client = client;
     }
+    public String getStatus() {
+        return status;
+    }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
     public Client getClient() {
         return client;
     }
@@ -42,6 +51,10 @@ public class Commande {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getRef() {
