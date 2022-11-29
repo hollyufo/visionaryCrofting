@@ -1,5 +1,7 @@
 package com.visionaryCrofting.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +25,11 @@ public class Stock implements Serializable {
     @Column(name = "password")
     private String password;
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Product> product;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<AppelOffre> appelOffres;
 
 
     public Stock() {
@@ -60,6 +66,22 @@ public class Stock implements Serializable {
 
     public String getAdresse() {
         return adresse;
+    }
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
+
+    public List<AppelOffre> getAppelOffres() {
+        return appelOffres;
+    }
+
+    public void setAppelOffres(List<AppelOffre> appelOffres) {
+        this.appelOffres = appelOffres;
     }
 
     public void setAdresse(String adresse) {

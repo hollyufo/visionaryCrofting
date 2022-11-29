@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("${api.endpoint}/client")
 public class ClientRessource {
 
     @Autowired
@@ -33,12 +33,12 @@ public class ClientRessource {
     }
 
     @PostMapping("/")
-    public Optional<Client> addClient(@RequestBody Client client){
-        Optional<Client> client1 = clientService.addClient(client);
-        if(client1.isPresent()){
-            return client1;
-        }else{
-                return Optional.empty();
-        }
+    public Client addClient(@RequestBody Client client){
+        return clientService.addClient(client);
+    }
+
+    @PutMapping("{client_id}")
+    public Client updateClient(@PathVariable Long client_id,@RequestBody Client client){
+        return clientService.updateClient(client_id,client);
     }
 }
