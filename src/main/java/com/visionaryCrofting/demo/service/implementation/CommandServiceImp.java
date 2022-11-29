@@ -3,11 +3,12 @@ import com.visionaryCrofting.demo.entity.Commande;
 import com.visionaryCrofting.demo.repositories.CommandeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.visionaryCrofting.demo.service.CommandService;
 
 import java.util.List;
 
 @Service
-public class CommandServiceImp {
+public class CommandServiceImp implements CommandService{
     public final CommandeRepository commandeRepository;
     @Autowired
     public CommandServiceImp(CommandeRepository commandeRepository) {
