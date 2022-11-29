@@ -1,17 +1,27 @@
 package com.visionaryCrofting.demo.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "AppelOffre",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
 })
-public class AppelOffre {
+public class AppelOffre implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "ref" , nullable = false,unique = true)
     private String ref;
+
+    public String getRefProduit() {
+        return refProduit;
+    }
+
+    public void setRefProduit(String refProduit) {
+        this.refProduit = refProduit;
+    }
+
     @Column(name = "refProduit")
     private String refProduit;
     @Enumerated(EnumType.STRING)
