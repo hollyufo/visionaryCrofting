@@ -5,7 +5,6 @@ import com.visionaryCrofting.demo.entity.AppelOffre;
 import com.visionaryCrofting.demo.service.AppelOffreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
@@ -23,9 +22,9 @@ public class AppelOffreRest {
         return appelOffreService.findByRef(ref);
     }
 
-    @GetMapping("/id/{aLong}")
-    public AppelOffre getOne(@PathVariable("aLong") Long aLong) {
-        return appelOffreService.getOne(aLong);
+    @GetMapping("/id/{id}")
+    public AppelOffre getOne(@PathVariable("id") Long id) {
+        return appelOffreService.getOne(id);
     }
 
     @PostMapping("/")
