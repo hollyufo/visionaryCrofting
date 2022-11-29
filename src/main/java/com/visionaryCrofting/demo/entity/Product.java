@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "Product",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
 })
-public class Product {
+public class Product{
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "product_id")
