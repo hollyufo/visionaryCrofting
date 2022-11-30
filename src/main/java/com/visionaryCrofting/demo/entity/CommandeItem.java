@@ -1,5 +1,8 @@
 package com.visionaryCrofting.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -19,9 +22,11 @@ public class CommandeItem implements Serializable {
     private double price;
     @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "commande_id")
+    //@JsonManagedReference
     private Commande commande;
-    @OneToOne(mappedBy ="commandeItem" ,cascade =CascadeType.ALL)
+    @ManyToOne(cascade =CascadeType.ALL)
     @JoinColumn(name = "product_id")
+    //@JsonBackReference
     private Product product;
 
     public CommandeItem() {

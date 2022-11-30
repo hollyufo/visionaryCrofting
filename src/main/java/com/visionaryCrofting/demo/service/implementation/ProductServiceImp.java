@@ -5,6 +5,8 @@ import com.visionaryCrofting.demo.repositories.ProductRepository;
 import com.visionaryCrofting.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,15 +31,30 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public Product save(Product product) {
-        return null;
+        Product byRef = this.findByRef(product.getRef());
+        if (byRef != null) return null;
+        return productRepository.save(product);
     }
 
     @Override
     public Product update(Product t) {
-        return null;
+        Product byRef = this.findByRef(t.getRef());
+        if (byRef == null) return null;
+        return productRepository.save(t);
     }
     @Override
     public void deleteById(Long id) {
-            productRepository.deleteById(id);
+        productRepository.deleteById(id);
+    }
+
+    @Override
+    public Product findByRef(String ref) {
+        return productRepository.findByRef(ref);
+    }
+
+    @Override
+    @Transactional
+    public int deleteByRef(String ref) {
+        return productRepository.deleteByRef(ref);
     }
 }

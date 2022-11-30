@@ -28,10 +28,13 @@ public class Commande implements Serializable {
     private String status;
     @ManyToOne
     @JoinColumn(name = "client_id")
+    //@JsonManagedReference
     private Client client;
-   @OneToMany(mappedBy = "commande",cascade = CascadeType.ALL)
-   @JsonManagedReference
-   private List<CommandeItem> commandeItems;
+
+    @OneToMany(mappedBy = "commande",cascade = CascadeType.ALL)
+    //@JsonBackReference
+    private List<CommandeItem> commandeItems;
+
     public Commande(){}
     public Commande(String ref, LocalDate date, Double prixTotal, Client client) {
         this.ref = ref;
