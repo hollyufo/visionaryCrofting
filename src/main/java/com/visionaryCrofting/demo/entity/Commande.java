@@ -2,6 +2,8 @@ package com.visionaryCrofting.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +12,8 @@ import java.util.List;
 
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "Commande",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
 })
@@ -35,57 +39,4 @@ public class Commande implements Serializable {
     //@JsonBackReference
     private List<CommandeItem> commandeItems;
 
-    public Commande(){}
-    public Commande(String ref, LocalDate date, Double prixTotal, Client client) {
-        this.ref = ref;
-        this.date = date;
-        this.prixTotal = prixTotal;
-        this.client = client;
-    }
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getRef() {
-        return ref;
-    }
-
-    public void setRef(String ref) {
-        this.ref = ref;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Double getPrixTotal() {
-        return prixTotal;
-    }
-
-    public void setPrixTotal(Double prixTotal) {
-        this.prixTotal = prixTotal;
-    }
 }
