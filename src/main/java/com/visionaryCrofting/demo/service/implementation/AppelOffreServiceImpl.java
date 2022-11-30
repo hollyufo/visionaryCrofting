@@ -10,8 +10,8 @@ import java.util.List;
 
 @Service
 public class AppelOffreServiceImpl implements AppelOffreService {
-    @Autowired
-    AoRepository aoRepository;
+    @Transactional
+
     @Override
     public int deleteByRef(String ref) {
         return aoRepository.deleteByRef(ref);
@@ -29,7 +29,7 @@ public class AppelOffreServiceImpl implements AppelOffreService {
 
     @Override
     public AppelOffre getOne(Long aLong) {
-        return aoRepository.findById(aLong).orElse(null);
+        return aoRepository.getOne(aLong);
     }
 
     @Override
@@ -40,7 +40,15 @@ public class AppelOffreServiceImpl implements AppelOffreService {
 
     @Override
     public AppelOffre update(AppelOffre appelOffre) {
-        if (this.getOne(appelOffre.getId()) == null) return null;
+        if (this.findByRef(appelOffre.getRef()) != null) return null;
         return aoRepository.save(appelOffre);
     }
+
+    @Override
+    public List<AppelOffre> getAll() {
+        return aoRepository.findAll(); 
+    }
+
+    @Autowired
+    AoRepository aoRepository;
 }
