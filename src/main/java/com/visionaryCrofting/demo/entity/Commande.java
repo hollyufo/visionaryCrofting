@@ -1,6 +1,7 @@
 package com.visionaryCrofting.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties("client")
 @Table(name = "Commande",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
 })
@@ -34,7 +36,7 @@ public class Commande implements Serializable {
     @JoinColumn(name = "client_id")
     //@JsonManagedReference
     private Client client;
-
+@JsonManagedReference
     @OneToMany(mappedBy = "commande",cascade = CascadeType.ALL)
     //@JsonBackReference
     private List<CommandeItem> commandeItems;
