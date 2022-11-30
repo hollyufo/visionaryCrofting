@@ -42,4 +42,7 @@ public class Product implements Serializable {
     @JoinColumn(name = "stock_id")
     //@JsonManagedReference
     private Stock stock;
+
+    public Product(String ref1, String produit, String electro, String fcgvhbjn, int i, Object o, Object o1) {
+    }
 }
