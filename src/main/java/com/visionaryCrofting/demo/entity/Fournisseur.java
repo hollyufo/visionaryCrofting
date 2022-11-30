@@ -23,11 +23,8 @@ public class Fournisseur implements Serializable {
     private String tel;
     @Column(name = "password")
     private String  password;
-
-
-
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "fournisseur")
-    @JsonBackReference
+    //@JsonBackReference
     List<AppelOffre> appelOffre;
 
 
