@@ -1,7 +1,9 @@
 package com.visionaryCrofting.demo.service.implementation;
 
 import com.visionaryCrofting.demo.entity.Product;
+import com.visionaryCrofting.demo.entity.Stock;
 import com.visionaryCrofting.demo.repositories.ProductRepository;
+import com.visionaryCrofting.demo.repositories.StockRepository;
 import com.visionaryCrofting.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,9 @@ public class ProductServiceImp implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    StockRepository stockRepository;
     @Override
     public Optional<Product> getById(Long id) {
         return productRepository.findById(id);

@@ -2,11 +2,15 @@ package com.visionaryCrofting.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "CommandeItem",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
 })
@@ -29,73 +33,4 @@ public class CommandeItem implements Serializable {
     //@JsonBackReference
     private Product product;
 
-    public CommandeItem() {
-    }
-
-    public CommandeItem(Long id, String ref, int quantity, double price) {
-        this.id = id;
-        this.ref = ref;
-        this.quantity = quantity;
-        this.price = price;
-    }
-
-    public CommandeItem(String ref, int quantity, double price) {
-        this.ref = ref;
-        this.quantity = quantity;
-        this.price = price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getRef() {
-        return ref;
-    }
-
-    public void setRef(String ref) {
-        this.ref = ref;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public Commande getCommande() {
-        return commande;
-    }
-
-    public void setCommande(Commande commande) {
-        this.commande = commande;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    @Override
-    public String toString() {
-        return "commandItem{" +
-                "id=" + id +
-                ", ref='" + ref + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                '}';
-    }
 }
