@@ -42,4 +42,14 @@ public class FornisseurServiceImp implements FornisseurService {
         fournisseurRepository.deleteById(id);
         return "Fournisseur deleted";
     }
+    // update fournisseur
+    public Fournisseur updateFournisseur(Long id, Fournisseur fournisseur){
+        fournisseur.setId(id);
+        Fournisseur existingFournisseur = fournisseurRepository.findById(fournisseur.getId()).orElse(null);
+        existingFournisseur.setName(fournisseur.getName());
+        existingFournisseur.setEmail(fournisseur.getEmail());
+        existingFournisseur.setTel(fournisseur.getTel());
+        existingFournisseur.setPassword(fournisseur.getPassword());
+        return fournisseurRepository.save(existingFournisseur);
+    }
 }
