@@ -52,4 +52,13 @@ public class ProductController {
     public int deleteByRef(@PathVariable String ref) {
         return productService.deleteByRef(ref);
     }
+
+    @PostMapping("/inc/ref/{ref}/qte/{qte}")
+    public Product increaseQte(@PathVariable String ref,@PathVariable int qte){
+        return productService.increaseQte(ref,qte);
+    }
+    @PostMapping("/dec/ref/{ref}/qte/{qte}")
+    public Product decreaseQte(@PathVariable String ref,@PathVariable int qte){
+        return productService.decreaseQte(ref,qte);
+    }
 }

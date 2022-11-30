@@ -37,10 +37,20 @@ public class ProductServiceImp implements ProductService {
     @Override
     public Product save(Product product) {
         Product byRef = this.findByRef(product.getRef());
-        if (byRef != null) return null;
-        Optional<Stock> s = stockRepository.findById(product.getStock().getId());
-        product.setStock(s.get());
-        return productRepository.save(product);
+        if (byRef != null) {
+            return null;
+        }else {
+            Optional<Stock> s = stockRepository.findById(product.getStock().getId());
+            if(s.isPresent()){
+                product.setStock(s.get());
+                return productRepository.save(product);
+            }else {
+                return productRepository.save(product);
+            }
+
+
+        }
+
     }
 
     @Override
@@ -63,5 +73,28 @@ public class ProductServiceImp implements ProductService {
     @Transactional
     public int deleteByRef(String ref) {
         return productRepository.deleteByRef(ref);
+    }
+
+    @Override
+    public Product increaseQte(String ref, int qte) {
+        Product product=productRepository.findByRef(ref);
+        if(product==null){
+            throw new IllegalStateException("Le produit n'existe pas dans le stock");
+        }else {
+            product.setQuantity(product.getQuantity()+qte);
+            return product;
+            }
+    }
+
+    @Override
+    public Product decreaseQte(String ref, int qte) {
+        Product  product=productRepository.findByRef(ref);
+        if(qte>product.getQuantity())
+        {
+            throw new IllegalStateException("La quantité requise est supérieure à la quantité disponible");
+        }else {
+            product.setQuantity(product.getQuantity()-qte);
+            return product;
+        }
     }
 }
