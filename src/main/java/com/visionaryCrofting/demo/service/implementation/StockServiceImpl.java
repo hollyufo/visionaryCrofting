@@ -8,6 +8,9 @@ import com.visionaryCrofting.demo.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Optional;
+
 
 @Component
 public class StockServiceImpl implements StockService {
@@ -24,8 +27,21 @@ public class StockServiceImpl implements StockService {
         repository.deleteById(id);
     }
 
+     @Override
     public Stock updateStock(Stock stock){
         return  repository.save(stock);
     }
+
+    @Override
+    public Optional<Stock> getById(Long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public List<Stock> getAll() {
+        return repository.findAll();
+    }
+
+
 
 }
