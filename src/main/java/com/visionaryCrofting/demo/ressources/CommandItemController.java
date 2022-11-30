@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("${api.endpoint}/commandItem")
-public class CommandItemController {
+public class  CommandItemController {
     @Autowired
     private CommanItemService commanItemService;
 
@@ -29,7 +29,9 @@ public class CommandItemController {
     }
 
     @PostMapping("/")
-    public CommandeItem save(@RequestBody CommandeItem commandeItem) {return (CommandeItem) commanItemService.save(commandeItem);}
+    public CommandeItem save(@RequestBody CommandeItem commandeItem) {
+        return  commanItemService.save(commandeItem);
+    }
 
     @PutMapping("/")
     public CommandeItem update(@RequestBody CommandeItem commandeItem) {return (CommandeItem) commanItemService.update(commandeItem);}
