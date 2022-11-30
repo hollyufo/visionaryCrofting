@@ -1,8 +1,9 @@
 package com.visionaryCrofting.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,10 +16,10 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@JsonIgnoreProperties("client")
 @Table(name = "Commande",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
 })
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Commande implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +37,7 @@ public class Commande implements Serializable {
     @JoinColumn(name = "client_id")
     //@JsonManagedReference
     private Client client;
-@JsonManagedReference
+
     @OneToMany(mappedBy = "commande",cascade = CascadeType.ALL)
     //@JsonBackReference
     private List<CommandeItem> commandeItems;
