@@ -38,6 +38,8 @@ public class ProductServiceImp implements ProductService {
     public Product save(Product product) {
         Product byRef = this.findByRef(product.getRef());
         if (byRef != null) return null;
+        Optional<Stock> s = stockRepository.findById(product.getStock().getId());
+        product.setStock(s.get());
         return productRepository.save(product);
     }
 
