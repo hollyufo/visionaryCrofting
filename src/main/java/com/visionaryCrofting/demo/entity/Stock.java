@@ -26,10 +26,10 @@ public class Stock implements Serializable {
     @Column(name = "password")
     private String password;
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "stock")
-    @JsonBackReference
+    //@JsonBackReference
     private List<Product> product;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "stock")
-    @JsonBackReference
+    //@JsonBackReference
     private List<AppelOffre> appelOffres;
 
 

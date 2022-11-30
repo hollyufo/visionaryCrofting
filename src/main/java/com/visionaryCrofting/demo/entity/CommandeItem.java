@@ -22,11 +22,11 @@ public class CommandeItem implements Serializable {
     private double price;
     @ManyToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "commande_id")
-    @JsonManagedReference
+    //@JsonManagedReference
     private Commande commande;
-    @OneToOne(mappedBy ="commandeItem" ,cascade =CascadeType.ALL)
+    @ManyToOne(cascade =CascadeType.ALL)
     @JoinColumn(name = "product_id")
-    @JsonBackReference
+    //@JsonBackReference
     private Product product;
 
     public CommandeItem() {
