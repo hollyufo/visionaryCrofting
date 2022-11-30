@@ -11,7 +11,7 @@ public interface AppelOffreService {
 
     List<AppelOffre> findAll();
 
-    @Deprecated
+
     AppelOffre getOne(Long aLong);
 
     AppelOffre save(AppelOffre appelOffre);

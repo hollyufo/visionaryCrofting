@@ -22,15 +22,6 @@ public class AppelOffre implements Serializable {
     private Long id;
     @Column(name = "ref" , nullable = false,unique = true)
     private String ref;
-
-    public String getRefProduit() {
-        return refProduit;
-    }
-
-    public void setRefProduit(String refProduit) {
-        this.refProduit = refProduit;
-    }
-
     @Column(name = "refProduit")
     private String refProduit;
     @Enumerated(EnumType.STRING)

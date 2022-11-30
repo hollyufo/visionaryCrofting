@@ -1,12 +1,11 @@
 package com.visionaryCrofting.demo.ressources;
 
+import com.visionaryCrofting.demo.entity.AppelOffre;
 import com.visionaryCrofting.demo.entity.Fournisseur;
+import com.visionaryCrofting.demo.service.FornisseurService;
 import com.visionaryCrofting.demo.service.implementation.FornisseurServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,9 +45,13 @@ public class FornisseurController {
         return fornisseurService.deleteFournisseur(id);
     }
     // update fournisseur
-    @GetMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public Fournisseur updateFournisseur(Long id, Fournisseur fournisseur){
         return fornisseurService.updateFournisseur(id, fournisseur);
+    }
+    @PutMapping("/validate/{id_fournissuer}")
+    public AppelOffre validate(@PathVariable Long id_fournissuer , @RequestBody Long id_AppelOffre ){
+        return fornisseurService.validate(id_fournissuer, id_AppelOffre);
     }
 
 }
