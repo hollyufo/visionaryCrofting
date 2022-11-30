@@ -1,17 +1,24 @@
 package com.visionaryCrofting.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "client",uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
-public class Client implements Serializable {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+public class Client implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "client_id")
@@ -28,62 +35,6 @@ public class Client implements Serializable {
     private String tel;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-    @JsonBackReference
+    //@JsonBackReference
     List<Commande> commandes;
-
-    public Client() {
-    }
-
-    public Client(String email, String password, String tel, List<Commande> commandes) {
-        this.email = email;
-        this.password = password;
-        this.tel = tel;
-        this.commandes = commandes;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public List<Commande> getCommandes() {
-        return commandes;
-    }
-
-    public void setCommandes(List<Commande> commandes) {
-        this.commandes = commandes;
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", email='" + email +
-        ", password='" + password +
-        ", tel='" + tel +
-        '}';
-    }
 }
