@@ -44,6 +44,11 @@ public class AppelOffreServiceImpl implements AppelOffreService {
         return aoRepository.save(appelOffre);
     }
 
+    @Override
+    public List<AppelOffre> getAll() {
+        return aoRepository.findAll(); 
+    }
+
     @Autowired
     AoRepository aoRepository;
 }
