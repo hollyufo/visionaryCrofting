@@ -17,7 +17,12 @@ public class CommandServiceImp implements CommandService{
     }
     // get commande by id
     public Commande getCommandeById(Long id){
-        return commandeRepository.findById(id).orElse(null);
+        Commande stest = commandeRepository.findById(id).orElse(null);
+        if (stest == null){
+            throw new IllegalStateException("Commande not found");
+        }else{
+            return stest;
+        }
     }
     // get commande by ref
     public Commande getCommandeByRef(String ref){
