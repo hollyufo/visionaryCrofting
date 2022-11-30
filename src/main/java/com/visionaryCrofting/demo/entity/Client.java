@@ -28,7 +28,7 @@ public class Client implements Serializable {
     private String tel;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-    @JsonBackReference
+    //@JsonBackReference
     List<Commande> commandes;
 
     public Client() {

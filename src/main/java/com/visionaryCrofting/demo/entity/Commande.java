@@ -28,11 +28,11 @@ public class Commande implements Serializable {
     private String status;
     @ManyToOne
     @JoinColumn(name = "client_id")
-    @JsonManagedReference
+    //@JsonManagedReference
     private Client client;
 
     @OneToMany(mappedBy = "commande",cascade = CascadeType.ALL)
-    @JsonBackReference
+    //@JsonBackReference
     private List<CommandeItem> commandeItems;
 
     public Commande(){}

@@ -21,9 +21,10 @@ public class ClientTest {
     ClientService clientService;
     @Test
     public void addClient(){
-        Client client = new Client("salim@gmail.com","Azerty@123","0677889900", List.of());
-        Client result = clientService.addClient(client);
-        Assertions.assertSame(client,result);
+        Client client = new Client("salim@gmail..com","Azerty@123","0677889900", List.of());
+        Client client1 = new Client();
+        Client result = clientService.addClient(client1);
+        Assertions.assertSame(client1,result);
     }
     @Test
     public void updatClient(){
