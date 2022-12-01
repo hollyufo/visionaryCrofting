@@ -46,7 +46,7 @@ public class AppelOffreServiceImpl implements AppelOffreService {
 
     @Override
     public List<AppelOffre> getAll() {
-        return aoRepository.findAll(); 
+        return aoRepository.findAll();
     }
 
     @Autowired
