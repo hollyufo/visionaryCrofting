@@ -19,4 +19,7 @@ public interface ProductService {
     Product findByRef(String ref);
     int deleteByRef(String ref);
 
+    Product increaseQte(String ref,int qte);
+    Product decreaseQte(String ref,int qte);
+
 }

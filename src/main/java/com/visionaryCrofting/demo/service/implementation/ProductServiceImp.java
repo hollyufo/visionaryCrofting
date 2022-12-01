@@ -5,12 +5,15 @@ import com.visionaryCrofting.demo.entity.Stock;
 import com.visionaryCrofting.demo.repositories.ProductRepository;
 import com.visionaryCrofting.demo.repositories.StockRepository;
 import com.visionaryCrofting.demo.service.ProductService;
+import com.visionaryCrofting.demo.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class ProductServiceImp implements ProductService {
@@ -19,7 +22,7 @@ public class ProductServiceImp implements ProductService {
     ProductRepository productRepository;
 
     @Autowired
-    StockRepository stockRepository;
+    StockService stockService;
     @Override
     public Optional<Product> getById(Long id) {
         return productRepository.findById(id);
@@ -36,18 +39,71 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public Product save(Product product) {
-        Product byRef = this.findByRef(product.getRef());
-        if (byRef != null) return null;
-        Optional<Stock> s = stockRepository.findById(product.getStock().getId());
-        product.setStock(s.get());
-        return productRepository.save(product);
+        if (product.getCategory()== null || product.getNom()==null ||
+        product.getDescreption()==null || product.getQuantity()<=0 ) {
+            throw new IllegalStateException("Toutes les données sont obligatoires");
+
+        }
+        else {
+//            Pattern pattRef = Pattern.compile("^[A-Za-z]{1,5}[0-9]{5,20}$");
+//            Pattern pattNom = Pattern.compile("^[A-Za-z\\s]{5,20}$");
+////            Pattern pattDesc = Pattern.compile("^[A-Za-z\\s]$");
+//            Matcher matcher1 = pattNom.matcher(product.getNom());
+//            Matcher matcher2 = pattDesc.matcher(product.getDescreption());
+//            if(!matcher1.matches() && matcher2.matches()) {
+//                throw new IllegalStateException("Le nom est non valide");
+//            }else if(!matcher1.matches() && matcher2.matches()) {
+//                throw new IllegalStateException("Le nom est non valide");
+//            }else if(!matcher2.matches()){
+//                throw new IllegalStateException("La description  est non valide");
+//            }
+//            else{
+                return productRepository.save(product);
+//            }
+
+        }
     }
+
+//    @Override
+//    public Product save(Product product) {
+//        Product byRef = this.findByRef(product.getRef());
+//        if (byRef != null) {
+//            return null;
+//        }else {
+//            if(product.getStock()!=null){
+//                Optional<Stock> s = stockRepository.findById(product.getStock().getId());
+//                if(s.isPresent()){
+//                    product.setStock(s.get());
+//                    return productRepository.save(product);
+//                }else{
+//                    throw new IllegalStateException("stock non trouvée pour l'id"+product.getStock().getId());
+//                }
+//            }else {
+//                throw new IllegalStateException("sotck required");
+//            }
+//        }
+//
+//    }
 
     @Override
     public Product update(Product t) {
         Product byRef = this.findByRef(t.getRef());
-        if (byRef == null) return null;
-        return productRepository.save(t);
+        if (byRef == null){
+            throw new IllegalStateException("product not found");
+        }else {
+            byRef.setRef(t.getRef());
+            byRef.setQuantity(t.getQuantity());
+            byRef.setDescreption(t.getDescreption());
+            byRef.setNom(t.getNom());
+            byRef.setCategory(t.getCategory());
+            Optional<Stock> stock = stockService.getById(t.getStock().getId());
+            if(stock.isPresent()) {
+                byRef.setStock(stock.get());
+            }else{
+                throw new IllegalStateException("stock not found");
+            }
+            return productRepository.save(byRef);
+        }
     }
     @Override
     public void deleteById(Long id) {
@@ -63,5 +119,29 @@ public class ProductServiceImp implements ProductService {
     @Transactional
     public int deleteByRef(String ref) {
         return productRepository.deleteByRef(ref);
+    }
+
+    @Override
+    public Product increaseQte(String ref, int qte) {
+        Product product=productRepository.findByRef(ref);
+        if(product==null){
+            throw new IllegalStateException("Le produit n'existe pas dans le stock");
+        }else {
+            product.setQuantity(product.getQuantity()+qte);
+            productRepository.save(product);
+            return product;
+            }
+    }
+
+    @Override
+    public Product decreaseQte(String ref, int qte) {
+        Product  product=productRepository.findByRef(ref);
+        if(qte>product.getQuantity())
+        {
+            throw new IllegalStateException("La quantité requise est supérieure à la quantité disponible");
+        }else {
+            product.setQuantity(product.getQuantity()-qte);
+            return product;
+        }
     }
 }

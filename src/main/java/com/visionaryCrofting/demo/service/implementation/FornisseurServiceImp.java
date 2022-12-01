@@ -1,17 +1,23 @@
 package com.visionaryCrofting.demo.service.implementation;
 
+import com.visionaryCrofting.demo.entity.AppelOffre;
 import com.visionaryCrofting.demo.entity.Fournisseur;
+import com.visionaryCrofting.demo.entity.Status;
 import com.visionaryCrofting.demo.repositories.FournisseurRepository;
+import com.visionaryCrofting.demo.service.AppelOffreService;
 import com.visionaryCrofting.demo.service.FornisseurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FornisseurServiceImp implements FornisseurService {
     @Autowired
     FournisseurRepository fournisseurRepository;
+    @Autowired
+    AppelOffreService aoService;
 
     // get all fournisseur
     public List<Fournisseur> getAllFournisseur(){
@@ -51,5 +57,23 @@ public class FornisseurServiceImp implements FornisseurService {
         existingFournisseur.setTel(fournisseur.getTel());
         existingFournisseur.setPassword(fournisseur.getPassword());
         return fournisseurRepository.save(existingFournisseur);
+    }
+
+    @Override
+    public AppelOffre validate(Long id_fournissuer , Long ao) {
+        AppelOffre ao1 = aoService.getOne(ao);
+        if(ao1 != null){
+            Fournisseur fournisseur = getFournisseurById(id_fournissuer);
+            ao1.setStatus(Status.valueOf("validate"));
+            if(fournisseur != null){
+                ao1.setFournisseur(fournisseur);
+            }else{
+                throw new IllegalStateException("fournissuer id needed!");
+            }
+
+            return aoService.update(ao1);
+         } else {
+            throw new IllegalStateException("Appel d'offre non trouvée");
+        }
     }
 }

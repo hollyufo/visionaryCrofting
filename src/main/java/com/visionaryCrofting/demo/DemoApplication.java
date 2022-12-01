@@ -1,8 +1,6 @@
 package com.visionaryCrofting.demo;
-
+import com.visionaryCrofting.demo.entity.Client;
 import com.visionaryCrofting.demo.entity.Stock;
-import com.visionaryCrofting.demo.repositories.StockRepository;
-import com.visionaryCrofting.demo.service.StockService;
 import com.visionaryCrofting.demo.service.implementation.StockServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,16 +10,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class DemoApplication implements CommandLineRunner {
+public class DemoApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
-	}
-	@Autowired
-	private StockServiceImpl stockService;
-	@Override
-	public void run(String... args) throws Exception {
-		 String status="validate";
-		 stockService.search("",status,"");
 	}
 }
