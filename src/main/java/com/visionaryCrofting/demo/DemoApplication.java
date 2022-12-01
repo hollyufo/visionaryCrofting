@@ -11,29 +11,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class DemoApplication implements CommandLineRunner {
+public class DemoApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-     @Autowired
-	StockServiceImpl stockService;
-	@Override
-	public void run(String... args) throws Exception {
-		Stock stock = new Stock();
-		stock.setEmail("taha@gmail.com");
-		stock.setPassword("taha2000");
-		
-		stockService.save(stock);
 
-		System.out.println("done success for stock");
-		Client cl = new Client();
-		cl.setEmail("dazdzda");
-		cl.setPassword("dedzd");
-		cl.setTel("zdzedze");
-
-
-
-	}
 }

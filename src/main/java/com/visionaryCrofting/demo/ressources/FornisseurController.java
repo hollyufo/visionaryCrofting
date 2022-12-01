@@ -36,7 +36,7 @@ public class FornisseurController {
     }
     // add fournisseur
     @PostMapping("/add")
-    public Fournisseur addFournisseur(Fournisseur fournisseur){
+    public Fournisseur addFournisseur(@RequestBody Fournisseur fournisseur){
         return fornisseurService.addFournisseur(fournisseur);
     }
     // delete fournisseur
