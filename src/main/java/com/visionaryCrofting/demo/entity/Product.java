@@ -40,6 +40,13 @@ public class Product implements Serializable {
     //@JsonManagedReference
     private Stock stock;
 
-    public Product(String ref1, String produit, String electro, String fcgvhbjn, int i, Object o, Object o1) {
+    public Product(String ref, String nom, String category, String descreption, int quantity) {
+        this.ref=ref;
+        this.nom=nom;
+        this.category=category;
+        this.descreption=descreption;
+        this.quantity=quantity;
     }
+
+
 }

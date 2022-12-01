@@ -59,7 +59,6 @@ public class ClientServiceImp implements ClientService {
                 if(clientById.getEmail().equals(client.getEmail()) && matcherPassword.matches()) {
                     clientById.setEmail(client.getEmail());
                     clientById.setPassword(client.getPassword());
-                    clientById.setCommandes(client.getCommandes());
                     clientById.setTel(client.getTel());
                     return clientById;
                 }else{
