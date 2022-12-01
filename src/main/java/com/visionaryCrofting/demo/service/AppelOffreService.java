@@ -17,4 +17,6 @@ public interface AppelOffreService {
     AppelOffre save(AppelOffre appelOffre);
 
     AppelOffre update(AppelOffre appelOffre);
+
+    List<AppelOffre> getAll();
 }

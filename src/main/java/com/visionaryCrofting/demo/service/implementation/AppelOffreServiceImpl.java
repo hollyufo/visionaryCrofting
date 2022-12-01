@@ -33,7 +33,7 @@ public class AppelOffreServiceImpl implements AppelOffreService {
     }
 
     @Override
-    public AppelOffre save(AppelOffre appelOffre) {
+    public AppelOffre save(AppelOffre appelOffre){
         if (this.findByRef(appelOffre.getRef()) != null) return null;
         return aoRepository.save(appelOffre);
     }
@@ -42,6 +42,11 @@ public class AppelOffreServiceImpl implements AppelOffreService {
     public AppelOffre update(AppelOffre appelOffre) {
         if (this.findByRef(appelOffre.getRef()) != null) return null;
         return aoRepository.save(appelOffre);
+    }
+
+    @Override
+    public List<AppelOffre> getAll() {
+        return aoRepository.findAll(); 
     }
 
     @Autowired
