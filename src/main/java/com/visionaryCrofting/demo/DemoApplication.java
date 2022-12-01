@@ -1,5 +1,4 @@
 package com.visionaryCrofting.demo;
-
 import com.visionaryCrofting.demo.entity.Client;
 import com.visionaryCrofting.demo.entity.Stock;
 import com.visionaryCrofting.demo.service.implementation.StockServiceImpl;
@@ -16,6 +15,4 @@ public class DemoApplication  {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
-
-
 }
