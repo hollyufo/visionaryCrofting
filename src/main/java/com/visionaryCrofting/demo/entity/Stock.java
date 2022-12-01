@@ -3,6 +3,7 @@ package com.visionaryCrofting.demo.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,15 +14,18 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+
 @Table(name = "Stock",uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Stock implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "stock_id")
     private Long id;
+
     @Column(name = "nom")
     private String nom;
     @Column(name = "adresse")

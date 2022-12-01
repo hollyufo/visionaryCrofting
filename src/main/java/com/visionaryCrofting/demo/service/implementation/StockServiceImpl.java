@@ -1,15 +1,17 @@
 package com.visionaryCrofting.demo.service.implementation;
 
-import com.visionaryCrofting.demo.entity.AppelOffre;
-import com.visionaryCrofting.demo.entity.Product;
-import com.visionaryCrofting.demo.entity.Stock;
+import com.visionaryCrofting.demo.entity.*;
 import com.visionaryCrofting.demo.repositories.StockRepository;
 import com.visionaryCrofting.demo.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 
 @Component
@@ -42,6 +44,24 @@ public class StockServiceImpl implements StockService {
         return repository.findAll();
     }
 
+    @Override
+    public Specification<AppelOffre> getSpec(String refProduit, String status, String fournisseur) {
+        return ((root, query, criteriaBuilder) -> {
+           List<Predicate> predicates = new ArrayList<>();
+           if(refProduit!=null && !(refProduit.isEmpty())){
+               predicates.add((Predicate) criteriaBuilder.equal(root.get("refProduit"),refProduit));
+           }if(status!=null && !(status.getClass().getName().isEmpty())){
+                predicates.add((Predicate) criteriaBuilder.equal(root.get("status"),status));
+           }
+           return criteriaBuilder.and(predicates.toArray(new javax.persistence.criteria.Predicate[0]));
+
+        });
+    }
+
+    @Override
+    public Collection<AppelOffre> search(String refProduit, String status, String fournisseur) {
+        return repository.findAllAppelDoffreByStatus(status);  
+    }
 
 
 }

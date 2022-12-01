@@ -3,6 +3,7 @@ package com.visionaryCrofting.demo.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "AppelOffre",uniqueConstraints = {
         @UniqueConstraint(columnNames = "ref")
 })
@@ -22,15 +24,6 @@ public class AppelOffre implements Serializable {
     private Long id;
     @Column(name = "ref" , nullable = false,unique = true)
     private String ref;
-
-    public String getRefProduit() {
-        return refProduit;
-    }
-
-    public void setRefProduit(String refProduit) {
-        this.refProduit = refProduit;
-    }
-
     @Column(name = "refProduit")
     private String refProduit;
     @Enumerated(EnumType.STRING)
