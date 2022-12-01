@@ -40,7 +40,7 @@ public class AppelOffreServiceImpl implements AppelOffreService {
 
     @Override
     public AppelOffre update(AppelOffre appelOffre) {
-        if (this.findByRef(appelOffre.getRef()) == null) return null;
+        if (this.findByRef(appelOffre.getRef()) != null) return null;
         return aoRepository.save(appelOffre);
     }
 
